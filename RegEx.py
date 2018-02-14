@@ -5,9 +5,6 @@ Created on Wed Feb 14 23:05:02 2018
 @author: JohnK
 """
 
-"""
-The below example will use Fraudulent Email Corpus from Kaggle . It contains thousands of phising mails
-"""
 
 import re
 
@@ -19,3 +16,27 @@ print(m.group())
 print(m.start(), m.end())
 print()
 print(type(m), m)
+
+
+"""
+The below example will use Fraudulent Email Corpus from Kaggle . It contains thousands of phising mails
+"""
+
+fh = open(r"DataSets/fradulent_emails.txt", "r").read()
+# Example 1 : prints all lines with the word "From:"  
+for line in re.findall("From:.*", fh):
+    print(line)
+    
+# Example 2: prints all all names after the word "From:"
+match = re.findall("From:.*", fh)
+for line in match:
+     print(re.findall("\".*\"", line))
+     
+match = re.findall("From:.*", fh)
+# Example 3: prints all all email addresses after the word "From:"
+for line in match:
+     print(re.findall("\w\S*@.*\w", line))
+     
+     
+
+
