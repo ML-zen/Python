@@ -37,6 +37,28 @@ match = re.findall("From:.*", fh)
 for line in match:
      print(re.findall("\w\S*@.*\w", line))
      
+
+     
+#Exaple 4:  Prints first part of email addresses only
+for line in match:
+    print(re.findall("\w\S*@", line))
+    
+# Example 5: prints all domain names of email addresses
+for line in match:
+     print(re.findall("@.*\w", line))
+# Example 6: prints all domain names of email addresses     
+address = re.findall("From:.*", fh)
+for item in address:
+    for line in re.findall("\w\S*@.*\w", item):
+        username, domain_name = re.split("@", line)
+        print("{}, {}".format(username, domain_name))
+        
+sender = re.search("From:.*", fh)
+address = sender.group()
+email = re.sub("From", "Email", address)
+print(address)
+print(email)
+     
      
 
 
